@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+          <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor">Dashboard</h4>
+          </div>
+          <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item active">Logout</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- column -->
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex">
+                  <div>
+                    <h5 class="card-title">Monitored Patient</h5>
+                    <h6 class="card-subtitle">List of patient currently being monitored</h6>
+                  </div>
+                  <div class="ml-auto">
+                   <a  href="{{ path('app_patient_new') }}" class="btn btn-success">Add New Patient</a>
+                  </div>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th>Full Name</th>
+                    <th>Prescription</th>
+                    <td>Contact</td>
+                    <th>Monitoring Period</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for patient in patients %}
+                  <tr>
+                    <td class="txt-oflo"><a href="{{ path('app_patient_details', {"patientId": patient.id}) }}" >{{ patient.firstName~" "~patient.lastName}} </a></td>
+                    <td class="txt-oflo">{{ patient.prescribedMedication  }}</td>
+                    <td class="txt-oflo">{{ patient.contactPhone  }} {% if patient.email%} / {{ patient.email  }}{% endif %}</td>
+                    <td class="txt-oflo">{{ patient.monitoringStartDate | date('Y-m-d H:i A') }} - {{ patient.monitoringStartDate | date('Y-m-d H:i A') }} </td>
+                    <td><a href="{{ path('app_patient_details', {"patientId": patient.id}) }}" class="btn btn-facebook">View Details</a> <!--a class="btn btn-danger">Remove</a--></td>
+                    <td></td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+{% endblock %}

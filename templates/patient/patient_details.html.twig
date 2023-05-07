@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+  {% block content %}
+    <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Patient Details</h4>
+      </div>
+      <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card oh">
+              <div class="card-body">
+                <div class="d-flex m-b-30 align-items-center no-block">
+                  <h5 class="card-title ">Pain Level Change</h5>
+                  <div class="ml-auto">
+                  </div>
+                </div>
+                <div id="morris-area-chart" style="height: 350px;"></div>
+              </div>
+              <div class="card-body bg-light">
+                <div class="row text-center m-b-20">
+{#                  <h3>Current Prescribed Medication:</h3>#}
+{#                   {{ patient.prescribedMedication }}#}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Patient Details</h5>
+
+                <div class="steamline m-t-40">
+                  <div class="sl-item">
+                    <div class="sl-left bg-info"><i class="fa fa-image"></i></div>
+                    <div class="sl-right">
+                      <div class="font-medium">Name</div>
+                      <div class="desc">{{ patient.firstName~" "~patient.lastName }}</div>
+                    </div>
+                    <div class="sl-right">
+                      <div class="font-medium">Current Prescription</div>
+                      <div class="desc">{{ patient.prescribedMedication }}</div>
+                    </div>
+                    <div class="sl-right">
+                      <div class="font-medium">Contact Info</div>
+                      <div class="desc">{{ patient.contactPhone }}</div>
+                      <div class="desc">{{ patient.email }}</div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}

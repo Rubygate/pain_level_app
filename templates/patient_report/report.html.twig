@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+  {% block left_nav %}
+  {% endblock %}
+  {% block content %}
+    <div class="row page-titles">
+      <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Pain Level Assessment</h4>
+      </div>
+      <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+          <ol class="breadcrumb">
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+      </div>
+
+      <div class="col-lg-6">
+        <form  method="post" action="{{ path('app_patient_report', {"patientId": patient.id}) }}">
+          <div class="card oh">
+            <div class="card-body">
+              <div class="d-flex m-b-30 align-items-center no-block">
+                <div class="col">
+                  {{ form_row(form.painLevel) }}
+                </div>
+              </div>
+              <div class="d-flex m-b-30 align-items-center no-block">
+                <button type="submit" class="btn btn-facebook">Submit</button>
+              </div>
+            </div>
+
+
+          </div>
+          {{ form_row(form._token) }}
+          {{ form_end(form, {'render_rest': false}) }}
+      </div>
+    </div>
+
+  {% endblock %}
