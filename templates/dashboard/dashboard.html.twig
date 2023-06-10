@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-end align-items-center">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active">Logout</li>
+{#                <li class=""><a href="{{ path('app_logout') }}">Logout</a></li>#}
               </ol>
             </div>
           </div>
@@ -35,7 +35,7 @@
                     <h6 class="card-subtitle">List of patient currently being monitored</h6>
                   </div>
                   <div class="ml-auto">
-                   <a  href="{{ path('app_patient_new') }}" class="btn btn-success">Add New Patient</a>
+                   <a style="background-color: #3b5998" href="{{ path('app_patient_new') }}" class="btn btn-success">Add New Patient</a>
                   </div>
                 </div>
               </div>
@@ -45,7 +45,7 @@
                   <tr>
                     <th>Full Name</th>
                     <th>Prescription</th>
-                    <td>Contact</td>
+{#                    <td>Contact</td>#}
                     <th>Monitoring Period</th>
                     <th>Action</th>
                   </tr>
@@ -55,7 +55,7 @@
                   <tr>
                     <td class="txt-oflo"><a href="{{ path('app_patient_details', {"patientId": patient.id}) }}" >{{ patient.firstName~" "~patient.lastName}} </a></td>
                     <td class="txt-oflo">{{ patient.prescribedMedication  }}</td>
-                    <td class="txt-oflo">{{ patient.contactPhone  }} {% if patient.email%} / {{ patient.email  }}{% endif %}</td>
+{#                    <td class="txt-oflo">{{ patient.contactPhone  }} {% if patient.email%} / {{ patient.email  }}{% endif %}</td>#}
                     <td class="txt-oflo">{{ patient.monitoringStartDate | date('Y-m-d H:i A') }} - {{ patient.monitoringStartDate | date('Y-m-d H:i A') }} </td>
                     <td><a href="{{ path('app_patient_details', {"patientId": patient.id}) }}" class="btn btn-facebook">View Details</a> <!--a class="btn btn-danger">Remove</a--></td>
                     <td></td>
