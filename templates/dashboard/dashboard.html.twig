@@ -11,19 +11,7 @@
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        <div class="row page-titles">
-          <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">Dashboard</h4>
-          </div>
-          <div class="col-md-7 align-self-center text-right">
-            <div class="d-flex justify-content-end align-items-center">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-{#                <li class=""><a href="{{ path('app_logout') }}">Logout</a></li>#}
-              </ol>
-            </div>
-          </div>
-        </div>
+
         <div class="row">
           <!-- column -->
           <div class="col-12">
@@ -47,6 +35,7 @@
                     <th>Prescription</th>
 {#                    <td>Contact</td>#}
                     <th>Monitoring Period</th>
+                    <th>Next Reminder Time</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -57,6 +46,7 @@
                     <td class="txt-oflo">{{ patient.prescribedMedication  }}</td>
 {#                    <td class="txt-oflo">{{ patient.contactPhone  }} {% if patient.email%} / {{ patient.email  }}{% endif %}</td>#}
                     <td class="txt-oflo">{{ patient.monitoringStartDate | date('Y-m-d H:i A') }} - {{ patient.monitoringStartDate | date('Y-m-d H:i A') }} </td>
+                    <td class="txt-oflo">{{ patient.nextReminderTime | date('Y-m-d H:i A') }} </td>
                     <td><a href="{{ path('app_patient_details', {"patientId": patient.id}) }}" class="btn btn-facebook">View Details</a> <!--a class="btn btn-danger">Remove</a--></td>
                     <td></td>
                   </tr>

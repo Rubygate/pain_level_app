@@ -34,7 +34,7 @@ class NotificationCommand extends Command
                         '<p>As part of our effort to provide you with the best care possible, Kindly click the link below to let us know you feel since you last used your medication.</p>'.
                         '<p> <a href="http://ec2-3-87-202-108.compute-1.amazonaws.com:8001/patient/'.$patient->getId().'/report">Click here to report your pain level.</a></p>'.
                         '<p>You are advised to be as sincere as possible to enable us to accurately assess your condition.</p>'.
-                        '<p>Kind regards,<br/>Dr. Ayoade Adeyemo.</p>'
+                        '<p>Kind regards,<br/>Dr. Ayoade Bamgbose.</p>'
                 );
             $this->mailer->send($email);
             $intervalType = $patient->getReminderIntervalType();
@@ -46,8 +46,9 @@ class NotificationCommand extends Command
             }
 
             $nextReminderTime = $totalHourInMinute / $patient->getReminderInterval();
-            $patient->setNextReminderTime($patient->getNextReminderTime()->modify("+ $nextReminderTime minutes"));
-            $this->entityManager->flush();
+            $nextReminderTime = (new \DateTime())->modify("+ $nextReminderTime minutes");
+            $patient->setNextReminderTime($nextReminderTime);
+            $this->entityManager->flush($patient);
         }
 
 

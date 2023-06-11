@@ -20,7 +20,19 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PatientReportType extends AbstractType
 {
     public function getPainLevel(){
-        return range(1,11);
+        return [
+            "0 - No Pain" => 0,
+            "1" => 1,
+            "2" => 2,
+            "3" => 3,
+            "4" => 4,
+            "5" => 5,
+            "6" => 6,
+            "7" => 7,
+            "8" => 8,
+            "9" => 9,
+            "10 - Worst Pain Imaginable" => 10,
+        ];
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -29,7 +41,7 @@ class PatientReportType extends AbstractType
 
             ->add('painLevel',ChoiceType::class,
                 [
-                    'label' => 'Rate your pain level between 1-10 below:',
+                    'label' => 'Rate your pain level between 0-10 below:',
                     'attr' => [
                         'class' => 'form-control',
                     ],

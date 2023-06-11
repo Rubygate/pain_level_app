@@ -118,6 +118,21 @@
     <!-- Container fluid  -->
     <!-- ============================================================== -->
     <div class="container-fluid">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+{#          <h4 class="text-themecolor">Dashboard</h4>#}
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+          <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+
+              {% if app.request.attributes.get('_route') != 'app_dashboard'  %}
+              <li class="breadcrumb-item active"><a style="color: #3b5998" href="{{ path('app_dashboard') }}"> Back To Dashboard</a></li>
+              {% endif %}
+            </ol>
+          </div>
+        </div>
+      </div>
 {% block content %}
 
 {% endblock %}
@@ -308,9 +323,10 @@
       lineWidth: 3,
       hideHover: 'auto',
       lineColors: ['#009efb', '#7460ee', '#009efb'],
-      resize: true
+      goals: [ {% if patient is defined %} {{ patient.painBaseline }} {% endif %}],
+      goalLineColors: ['red'],
+      goalStrokeWidth: 2
     });
-
   });
 </script>
 <script>
