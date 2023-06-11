@@ -51,6 +51,15 @@ class Patient
     #[ORM\OneToMany(mappedBy: 'patient', targetEntity: PatientReport::class)]
     private $patientReports;
 
+    #[ORM\Column(type: 'integer')]
+    private $painBaseline;
+
+    #[ORM\Column(type: 'datetime')]
+    private $nextReminderTime;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $reminderIntervalType;
+
     public function __construct()
     {
         $this->patientReports = new ArrayCollection();
@@ -219,6 +228,42 @@ class Patient
                 $patientReport->setPatient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPainBaseline(): ?int
+    {
+        return $this->painBaseline;
+    }
+
+    public function setPainBaseline(int $painBaseline): self
+    {
+        $this->painBaseline = $painBaseline;
+
+        return $this;
+    }
+
+    public function getNextReminderTime(): ?\DateTimeInterface
+    {
+        return $this->nextReminderTime;
+    }
+
+    public function setNextReminderTime(\DateTimeInterface $nextReminderTime): self
+    {
+        $this->nextReminderTime = $nextReminderTime;
+
+        return $this;
+    }
+
+    public function getReminderIntervalType(): ?string
+    {
+        return $this->reminderIntervalType;
+    }
+
+    public function setReminderIntervalType(string $reminderIntervalType): self
+    {
+        $this->reminderIntervalType = $reminderIntervalType;
 
         return $this;
     }

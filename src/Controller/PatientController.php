@@ -46,12 +46,22 @@ class PatientController extends AbstractController
             /** @var Patient $patient */
             $patient = $form->getData();
             $patient->setCreated(new \DateTime());
+            $intervalType = $form->get('intervalType')->getData();
+            $hourInMinute = 60;
+            if ($intervalType == 'day'){
+                $totalHourInMinute =  24 * $hourInMinute;
+            } elseif ($intervalType == 'weekly') {
+                $totalHourInMinute = 7 * 24 * $hourInMinute;
+            }
+
+            $nextReminderTime = $totalHourInMinute / $form->get('reminderInterval')->getData();
+            $patient->setNextReminderTime($patient->getMonitoringStartDate()->modify("+ $nextReminderTime minutes"));
+            $patient->setReminderIntervalType($form->get('intervalType')->getData());
             $patient->setPainLevelRequestInterval(
                 $patient->getReminderInterval()." ". $form->get('intervalType')->getData());
 
             $entityManager->persist($patient);
             $entityManager->flush();
-
 
             return $this->redirectToRoute('app_dashboard');
         }

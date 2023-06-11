@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -43,7 +44,7 @@ class PatientType extends AbstractType
             ])
             ->add('monitoringStartDate', DateTimeType::class,
                 [
-                    'label' => 'Monitoring End Date',
+                    'label' => 'Monitoring Start Date',
                     'widget' => 'single_text',
                     'html5' => true,
                     'input' => 'datetime',
@@ -64,7 +65,7 @@ class PatientType extends AbstractType
             )
             ->add('reminderInterval',IntegerType::class,
                 [
-                    'label' => 'Pain Level Report Interval',
+                    'label' => 'Reminder Frequency',
                     'attr' => [
                         'class' => 'form-control',
                     ]
@@ -73,18 +74,25 @@ class PatientType extends AbstractType
             )
             ->add('intervalType',ChoiceType::class,
                 [
-                    'label' => 'Hour/Minute',
+                    'label' => 'Period',
                     'attr' => [
                         'class' => 'form-control',
                     ],
                     'choices' => [
                         'Hour' => 'hour',
-                        'Minute' => 'minute'
+                        'Day' => 'day',
+                        'Weekly' => 'weekly'
                     ],
                     'mapped' => false
                 ]
             )
             ->add('prescribedMedication', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('painBaseline', ChoiceType::class, [
+                'choices' => array_combine(range(0,10), range(0,10)),
                 'attr' => [
                     'class' => 'form-control'
                 ]
