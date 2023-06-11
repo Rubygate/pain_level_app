@@ -45,8 +45,8 @@ class PatientRepository extends ServiceEntityRepository
     public function findPatientDueForReminder(): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.nextReminderTime >= :currentTime')
-            ->andWhere('p.monitoringEndDate < :today')
+            ->andWhere('p.nextReminderTime <= :currentTime')
+            ->andWhere('p.monitoringEndDate > :today')
             ->setParameter('currentTime', new \DateTime('now'))
             ->setParameter('today', new \DateTime('now'))
             ->orderBy('p.id', 'ASC')

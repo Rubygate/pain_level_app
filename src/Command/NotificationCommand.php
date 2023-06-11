@@ -36,20 +36,21 @@ class NotificationCommand extends Command
                         '<p>You are advised to be as sincere as possible to enable us to accurately assess your condition.</p>'.
                         '<p>Kind regards,<br/>Dr. Ayoade Adeyemo.</p>'
                 );
+            $this->mailer->send($email);
+            $intervalType = $patient->getReminderIntervalType();
+
+            if ($intervalType == 'day'){
+                $totalHourInMinute =  24 * 60;
+            } elseif ($intervalType == 'weekly') {
+                $totalHourInMinute = 7 * 24 * 60;
+            }
+
+            $nextReminderTime = $totalHourInMinute / $patient->getReminderInterval();
+            $patient->setNextReminderTime($patient->getNextReminderTime()->modify("+ $nextReminderTime minutes"));
+            $this->entityManager->flush();
         }
-        $this->mailer->send($email);
 
-        $intervalType = $patient->getReminderIntervalType();
 
-        if ($intervalType == 'day'){
-            $totalHourInMinute =  24 * 60;
-        } elseif ($intervalType == 'weekly') {
-            $totalHourInMinute = 7 * 24 * 60;
-        }
-
-        $nextReminderTime = $totalHourInMinute / $patient->getReminderInterval();
-        $patient->setNextReminderTime($patient->getNextReminderTime()->modify("+ $nextReminderTime minutes"));
-        $this->entityManager->flush();
         return Command::SUCCESS;
     }
 }

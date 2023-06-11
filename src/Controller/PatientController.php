@@ -54,6 +54,7 @@ class PatientController extends AbstractController
                 $totalHourInMinute = 7 * 24 * $hourInMinute;
             }
 
+            $patient->setMonitoringEndDate(new \DateTime($patient->getMonitoringEndDate()->format('Y-m-d 23:59:59')));
             $nextReminderTime = $totalHourInMinute / $form->get('reminderInterval')->getData();
             $patient->setNextReminderTime($patient->getMonitoringStartDate()->modify("+ $nextReminderTime minutes"));
             $patient->setReminderIntervalType($form->get('intervalType')->getData());
