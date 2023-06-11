@@ -42,7 +42,7 @@ class PatientType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('monitoringStartDate', DateTimeType::class,
+            ->add('monitoringStartDate', DateType::class,
                 [
                     'label' => 'Monitoring Start Date',
                     'widget' => 'single_text',
@@ -52,7 +52,7 @@ class PatientType extends AbstractType
                         'class' => 'form-control datepicker',
                     ]
                 ]
-            ) ->add('monitoringEndDate', DateTimeType::class,
+            ) ->add('monitoringEndDate', DateType::class,
                 [
                     'label' => 'Monitoring End Date',
                     'widget' => 'single_text',
@@ -79,7 +79,6 @@ class PatientType extends AbstractType
                         'class' => 'form-control',
                     ],
                     'choices' => [
-                        'Hour' => 'hour',
                         'Day' => 'day',
                         'Weekly' => 'weekly'
                     ],
