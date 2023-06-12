@@ -28,11 +28,3 @@ It is composed by 4 containers:
 ```
 DATABASE_URL=mysql://app_user:helloworld@db:3306/app_db?serverVersion=8.0.23
 ```
-
-You could change the name, user and password of the database in the `env` file at the root of the project.
-
-## To learn more
-
-I have recorded a Youtube session explaining the different parts of this project. You could see it here:
-
-[Boilerplate para Symfony basado en Docker, NGINX y PHP8](https://youtu.be/A82-hry3Zvw)
